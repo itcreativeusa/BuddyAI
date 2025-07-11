@@ -12,7 +12,7 @@
 
 ## 🖼️ Preview
 
-![BuddyAI Landing Page](https://raw.githubusercontent.com/itcreativeusa/BuddyAI/main/screenshot.png)
+![BuddyAI Landing Page](screenshot.png)
 
 ---
 
