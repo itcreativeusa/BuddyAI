@@ -87,11 +87,6 @@ Screenshot located in the root directory:
 
 ## 🙌 Credits
 
-- Custom theme and layout by **Kateryna Stetsenko**  
-- Some section design ideas inspired by popular SaaS landing pages  
-- Screenshot layout design tested via [Figma](https://www.figma.com/) before implementation
-
----
 
 ## 📄 License
 
