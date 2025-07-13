@@ -110,3 +110,86 @@ function modestra_add_woocommerce_support()
     add_theme_support('woocommerce');
 }
 add_action('after_setup_theme', 'modestra_add_woocommerce_support');
+
+function register_project() {
+  register_post_type('project', [
+    'labels' => [
+      'name'               => 'Projects',
+      'singular_name'      => 'Project',
+      'add_new'            => 'Add Project',
+      'add_new_item'       => 'Add New Project',
+      'edit_item'          => 'Edit Project',
+      'new_item'           => 'New Project',
+      'view_item'          => 'View Project',
+      'view_items'         => 'View Projects',
+      'search_items'       => 'Search Projects',
+      'not_found'          => 'No Projects found',
+      'not_found_in_trash' => 'No Projects found in Trash',
+      'all_items'          => 'All Projects',
+      'archives'           => 'Project Archives',
+      'attributes'         => 'Project Attributes',
+      'insert_into_item'   => 'Insert into project',
+      'uploaded_to_this_item' => 'Uploaded to this project',
+      'featured_image'     => 'Project Featured Image',
+      'set_featured_image' => 'Set featured image',
+      'remove_featured_image' => 'Remove featured image',
+      'use_featured_image' => 'Use as featured image',
+      'menu_name'          => 'Projects',
+      'filter_items_list'  => 'Filter projects list',
+      'items_list_navigation' => 'Projects list navigation',
+      'items_list'         => 'Projects list',
+      'name_admin_bar'     => 'Project',
+    ],
+    'public' => true,
+    'has_archive' => true,
+    'rewrite' => ['slug' => 'projects'],
+    'supports' => ['title', 'editor', 'thumbnail'],
+    'show_in_rest' => true,
+    'menu_position' => 1,
+    'menu_icon' => 'dashicons-portfolio',
+    'show_in_menu' => true,
+  ]);
+}
+add_action('init', 'register_project');
+
+function create_project_cpt() {
+    register_post_type('project',
+        array(
+            'labels' => array(
+                'name' => __('Projects'),
+                'singular_name' => __('Project')
+            ),
+            'public' => true,
+            'has_archive' => true,
+            'supports' => array('title', 'editor', 'thumbnail'),
+            'menu_icon' => 'dashicons-portfolio',
+        )
+    );
+}
+add_action('init', 'create_project_cpt');
+
+add_action('add_meta_boxes', 'add_project_meta_box');
+function add_project_meta_box() {
+    add_meta_box('project_details', 'Project Details', 'project_meta_callback', 'project');
+}
+
+function project_meta_callback($post) {
+    $client = get_post_meta($post->ID, 'client_name', true);
+    echo '<label>Client Name:</label><br>';
+    echo '<input type="text" name="client_name" value="' . esc_attr($client) . '" />';
+}
+
+add_action('save_post', 'save_project_meta');
+function save_project_meta($post_id) {
+    if (array_key_exists('client_name', $_POST)) {
+        update_post_meta($post_id, 'client_name', sanitize_text_field($_POST['client_name']));
+    }
+}
+register_block_pattern(
+  'modestra/custom-intro',
+  [
+    'title'       => __('Custom Intro'),
+    'description' => __('Intro section with custom content'),
+    'content'     => file_get_contents( get_template_directory() . '/patterns/custom-intro.php' ),
+  ]
+);

@@ -204,3 +204,20 @@ if ( ! function_exists( 'twentytwentyfour_pattern_categories' ) ) :
 endif;
 
 add_action( 'init', 'twentytwentyfour_pattern_categories' );
+function register_project() {
+  register_post_type('project', [
+    'labels' => [
+      'name' => 'Projects',
+      'singular_name' => 'Project',
+    ],
+    'public' => true,
+    'has_archive' => true,
+    'rewrite' => ['slug' => 'projects'],
+    'supports' => ['title', 'editor', 'thumbnail'],
+    'show_in_rest' => true,
+    'menu_position' => 5, 
+    'menu_icon' => 'dashicons-portfolio',
+    'show_in_menu' => true,
+  ]);
+}
+add_action('init', 'register_project');

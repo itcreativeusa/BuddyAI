@@ -1051,3 +1051,9 @@ a.wp-block-button__link.has-gradient-secondary-primary-gradient-background:hover
 .wp-block-contact-form-7-contact-form-selector.modestra-newsletter-1 input.wpcf7-form-control.wpcf7-submit {
   margin-bottom: 0;
 }
+.spvc-views {
+  font-size: 0.9rem;
+  color: #666;
+  margin-top: 20px;
+}
+

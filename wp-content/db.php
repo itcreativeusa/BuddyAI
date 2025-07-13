@@ -1,0 +1,1 @@
+/Users/kateryna_stetsenko/Local Sites/buddyai/app/public/wp-content/plugins/query-monitor/wp-content/db.php
